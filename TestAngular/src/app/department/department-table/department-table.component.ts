@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Department } from '../shared/department';
 import { DepartmentService } from '../shared/department.service';
 import { DepartmentFormComponent } from '../department-form/department-form.component';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-department-table',
@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
 export class DepartmentTableComponent implements OnInit {
   departmentList: Department[] = [];
   displayDialog: boolean;
-  
+
   @ViewChild('departmentform') form: DepartmentFormComponent;
 
   constructor(public service: DepartmentService) {
@@ -45,7 +45,7 @@ export class DepartmentTableComponent implements OnInit {
       if (loop < 0) {
         this.form.addedTelephoneFormArrayCtrl.removeAt(0);
       } else {
-        this.form.addedTelephoneFormArrayCtrl.push(new FormControl());
+        this.form.addedTelephoneFormArrayCtrl.push(new FormControl(null, [Validators.maxLength(11),Validators.required]));
       }
     }
     // while (this.departmentForm.addedTelephoneFormArray.lenght! == 0) {

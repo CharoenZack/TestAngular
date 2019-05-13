@@ -21,7 +21,7 @@ export class DepartmentFormComponent implements OnInit {
     addedTelephoneFormArray: new FormArray([]),
     budget: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(11)]),
     status: new FormControl(null, Validators.required),
-    telephone: new FormArray([new FormControl(null), new FormControl(null), new FormControl(null)], Validators.required),
+    telephone: new FormArray([new FormControl(null)], Validators.required),
     remark: new FormControl({value: '', disable: true}, [Validators.required, Validators.maxLength(255)])
   });
   cities1: SelectItem[];
@@ -84,13 +84,11 @@ export class DepartmentFormComponent implements OnInit {
 
   }
   addTelephone() {
-    this.addedTelephoneFormArrayCtrl.push(new FormControl('', [Validators.required]));
+    this.addedTelephoneFormArrayCtrl.push(new FormControl('', [Validators.required,Validators.maxLength(11)]));
   }
 
-  addbutton() {
-  }
-  deletebutton() {
-
+  deletebutton(item: number) {
+    this.addedTelephoneFormArrayCtrl.removeAt(item);
   }
 
 }
