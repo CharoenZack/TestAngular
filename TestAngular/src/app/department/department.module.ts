@@ -14,9 +14,11 @@ import {TableModule} from 'primeng/table';
 import { StatusPipe } from './shared/status.pipe';
 import { DepartmentService } from './shared/department.service';
 import {HttpClientModule} from '@angular/common/http';
+import { DepartmentFormComponent } from './department-form/department-form.component';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
-  declarations: [DepartmentComponent, SearchComponent, DepartmentTableComponent, StatusPipe],
+  declarations: [DepartmentComponent, SearchComponent, DepartmentTableComponent, StatusPipe, DepartmentFormComponent],
   imports: [
     CommonModule,
     InputTextModule,
@@ -27,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
     MessagesModule,
     MessageModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    DialogModule
   ],
   exports: [DepartmentComponent],
   providers: [DepartmentService]
