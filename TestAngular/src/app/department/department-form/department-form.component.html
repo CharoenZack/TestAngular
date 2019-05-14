@@ -21,35 +21,36 @@
   </div>
 
   <div [formGroup]="registerForm">
-    <div class="ui-g"  *ngFor="let control of addedTelephoneFormArrayCtrl.controls; let i = index">
-      <div class="ui-g-4" style="text-align:right">Telephone : {{i+1}}</div> 
+    <div
+      class="ui-g"
+      *ngFor="
+        let control of addedTelephoneFormArrayCtrl.controls;
+        let i = index
+      "
+    >
+      <div class="ui-g-4" style="text-align:right">Telephone : {{ i + 1 }}</div>
       <div class="ui-g-4">
-          <input type="text" [formControl]="control" maxlegth ="200" pInputText />
+        <input type="text" [formControl]="control" maxlegth="200" pInputText />
       </div>
       <button
         type="button"
         icon="pi pi-plus"
         style="margin-left: 4px"
         (click)="addTelephone()"
-        *ngIf="i===0"
+        *ngIf="i === 0"
         pButton
       ></button>
       <button
-      type="button"
-      icon="pi pi-minus"
-      style="margin-left: 4px"
-      (click)="deletebutton(i)"
-      class="ui-button-raised ui-button-danger"
-      *ngIf="i!==0"
-      pButton
-    ></button>
-     
-      <span
-        *ngIf="
-          registerForm.get('telephone').hasError('required') &&
-          registerForm.get('telephone').touched
-        "
-      >
+        type="button"
+        icon="pi pi-minus"
+        style="margin-left: 4px"
+        (click)="deletebutton(i)"
+        class="ui-button-raised ui-button-danger"
+        *ngIf="i !== 0"
+        pButton
+      ></button>
+
+      <span *ngIf="control.invalid">
         <p-message severity="error" text="telephone is required"> </p-message>
       </span>
       <span *ngIf="registerForm.get('telephone').hasError('pattern')">
@@ -59,6 +60,7 @@
         <p-message severity="error" text="เกินจำนวน"> </p-message>
       </span>
     </div>
+
     <div class="ui-g">
       <div class="ui-g-4" style="text-align:right">Province :</div>
       <div class="ui-g-6">

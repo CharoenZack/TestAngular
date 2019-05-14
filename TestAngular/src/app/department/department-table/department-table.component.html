@@ -60,12 +60,21 @@
             type="button"
             label="Remove"
             class="ui-button-danger"
+            (click)="deleteDepartment(rowData.departmentCode)"
           ></button>
         </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary" let-rowData>
-      <div style="text-align:left"></div>
+      <div style="text-align:left">
+        <button
+          pButton
+          type="button"
+          label="ADD"
+          class="ui-button-rounded ui-button-warning"
+          (click)="addItem()"
+        ></button>
+      </div>
     </ng-template>
   </p-table>
   <p-dialog
@@ -82,6 +91,9 @@
     [resizable]="true"
     appendTo="body"
   >
-    <app-department-form #departmentform></app-department-form>
+    <app-department-form
+      (save)="updataSelectedRow($event)"
+      #departmentform
+    ></app-department-form>
   </p-dialog>
 </p>

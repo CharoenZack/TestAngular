@@ -12,9 +12,9 @@ export class DepartmentFormComponent implements OnInit {
   @Output() save = new EventEmitter();
   @Output() cancel = new EventEmitter();
   addedTelephoneFormArrayCtrl: FormArray;
-  //@ViewChild('departmentform')departmentForm: DepartmentFormComponent;
+  // @ViewChild('departmentform')departmentForm: DepartmentFormComponent;
   // telephoneFormArray: FormArray;
-  registerForm = new FormGroup({
+    registerForm = new FormGroup({
     departmentCode: new FormControl(),
     departmentName: new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/), Validators.maxLength(50)]),
     province: new FormControl(null, Validators.required),
@@ -22,7 +22,7 @@ export class DepartmentFormComponent implements OnInit {
     budget: new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(11)]),
     status: new FormControl(null, Validators.required),
     telephone: new FormArray([new FormControl(null)], Validators.required),
-    remark: new FormControl({value: '', disable: true}, [Validators.required, Validators.maxLength(255)])
+    remark: new FormControl({ value: '', disable: true }, [Validators.required, Validators.maxLength(255)])
   });
   cities1: SelectItem[];
   constructor() {
@@ -31,6 +31,7 @@ export class DepartmentFormComponent implements OnInit {
       { label: 'Bangkok', value: { id: 1, name: 'Bangkok' } },
       { label: 'Chonburi', value: { id: 2, name: 'Chonburi' } }
     ];
+    setTimeout(() => this.registerForm.get('status').setValue('Y'));
   }
   departmentCtrl = this.registerForm.get('departmentName');
   // addedTelephoneFormArrayCtrl = this.registerForm.get('addedTelephoneFormArray') as FormArray;
@@ -41,7 +42,7 @@ export class DepartmentFormComponent implements OnInit {
   provinceOption = this.cities1;
 
   ngOnInit() {
-     this.addedTelephoneFormArrayCtrl = this.registerForm.get('telephone') as FormArray;
+    this.addedTelephoneFormArrayCtrl = this.registerForm.get('telephone') as FormArray;
   }
   Save() {
     // console.log('search');
@@ -84,11 +85,12 @@ export class DepartmentFormComponent implements OnInit {
 
   }
   addTelephone() {
-    this.addedTelephoneFormArrayCtrl.push(new FormControl('', [Validators.required,Validators.maxLength(11)]));
+    this.addedTelephoneFormArrayCtrl.push(new FormControl('', [Validators.required, Validators.maxLength(11)]));
   }
 
   deletebutton(item: number) {
     this.addedTelephoneFormArrayCtrl.removeAt(item);
   }
-
+  
+ 
 }

@@ -12,6 +12,15 @@ export class DepartmentService {
   loadDepartmentList(condition: any = {}) {
     return this.http.get<Department[]>('/workshop-api/api/department', {params: condition});
   }
+  editDepartment(department: Department) {
+   return this.http.put('/workshop-api/api/department', department);
+  }
+  deleteDepartMent(departmentCode: string){
+    return this.http.delete(`/workshop-api/api/department/${departmentCode}`);
+  }
+  addDepartment(department: Department) {
+    return this.http.post('/workshop-api/api/department', department);
+  }
 }
 
 
